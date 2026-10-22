@@ -1,0 +1,629 @@
+{% load static %}
+{% comment %}
+============================================================
+BUSINESS CONTACT SETTINGS (edit here, or pass these names
+from your Django view context to override them)
+
+whatsapp_number : digits only, with country code, no + or spaces
+e.g. 2348012345678
+phone_number : shown on the page and used for "Call to Order"
+e.g. +2348012345678
+============================================================
+{% endcomment %}
+{% firstof whatsapp_number "2348012345678" as wa_number %}
+{% firstof phone_number "+2348012345678" as tel_number %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Francis Parts | Quality Parts. Reliable Performance.</title>
+  <meta name="description"
+    content="Francis Parts supplies quality automobile spare parts to car owners, mechanics, repair shops and car dealers. Browse our parts and enquire on WhatsApp.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Site styles (static/css/style.css) -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'assets/style.css' %}">
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER / NAVIGATION ============ -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a class="logo" href="#home" aria-label="Francis Parts home">
+        <span class="logo-mark" aria-hidden="true"><i class="fa-solid fa-gear"></i></span>
+        <span class="logo-text">Francis <strong>Parts</strong></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-burger">
+        <span class="sr-only">Open or close the menu</span>
+        <span class="burger-line" aria-hidden="true"></span>
+      </label>
+
+      <ul class="nav-links">
+        <li><a href="#home" aria-current="page">Home</a></li>
+        <li><a href="#products">Shop Parts</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a class="btn btn-whatsapp btn-sm nav-cta"
+        href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+        target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        <span class="nav-cta-label">WhatsApp Us</span>
+      </a>
+
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <img class="hero-image" src="{% static 'assets/img/Gwagon.jpg' %}"
+        alt="Black luxury SUV parked in a dark garage with red lighting" width="1920" height="1080">
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <p class="eyebrow">Auto spare parts</p>
+        <h1 id="hero-title">Quality Car Parts You Can <span class="text-red">Trust.</span></h1>
+        <p class="hero-text">We supply genuine and high-quality auto spare parts for Mercedes-Benz, BMW, Toyota, Honda
+          and more. Keep your vehicle running at its best.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red btn-lg"
+            href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+            target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+          </a>
+          <a class="btn btn-outline-light btn-lg" href="#contact">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRUST STRIP ============ -->
+    <section class="trust-strip" aria-label="Our promise">
+      <ul class="container trust-list">
+        <li>
+          <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+          <div><strong>Genuine Parts</strong><span>Quality-tested</span></div>
+        </li>
+        <li>
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <div><strong>Wide Range</strong><span>All makes and models</span></div>
+        </li>
+        <li>
+          <i class="fa-solid fa-gear" aria-hidden="true"></i>
+          <div><strong>Expert Support</strong><span>Get the right parts</span></div>
+        </li>
+        <li>
+          <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+          <div><strong>Fast Response</strong><span>Quick enquiries</span></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ CATEGORIES + FEATURED PRODUCTS ============ -->
+    <section class="section catalog" aria-label="Parts catalogue">
+      <div class="container catalog-layout">
+
+        <!-- Categories -->
+        <div class="catalog-categories" id="categories">
+          <header class="section-head">
+            <p class="eyebrow">Our categories</p>
+            <h2>Browse by Category</h2>
+            <p>Find the right parts for your vehicle.</p>
+          </header>
+
+          <div class="category-grid">
+
+            <a class="category-card" href="#products">
+              <img src="{% static 'assets/img/engine.jpg' %}" alt="Car engine block with pistons and belts" width="600"
+                height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Engine Parts</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static '/assets/img/brakes.jpg' %}" alt="Red brake caliper and brake disc" width="600"
+                height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Brake Systems</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static '/assets/img/battery.jpg' %}" alt="12 volt car battery" width="600" height="450"
+                loading="lazy">
+              <div class="category-label">
+                <h3>Batteries</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static 'assets/img/wheel.jpg' %}" alt="New car tyre on an alloy wheel" width="600"
+                height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Tyres &amp; Wheels</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static 'assets/img/headlights.jpg' %}" alt="Close-up of a modern LED car headlight"
+                width="600" height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Headlights &amp; Lighting</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static 'assets/img/suspense.jpg' %}" alt="Shock absorber with coil spring" width="600"
+                height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Suspension &amp; Steering</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static 'assets/img/lubri.jpg' %}" alt="Oil filter, air filter and engine oil" width="600"
+                height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Filters &amp; Lubricants</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <a class="category-card" href="#products">
+              <img src="{% static 'assets/img/parts.jpg' %}" alt="Car bumper, side mirror and body panels" width="600"
+                height="450" loading="lazy">
+              <div class="category-label">
+                <h3>Body Parts &amp; Accessories</h3><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Featured products (showcase only: no cart, no checkout) -->
+        <div class="products-panel" id="products">
+          <header class="section-head">
+            <p class="eyebrow">Featured products</p>
+            <h2>Popular Car Parts</h2>
+            <p>High-quality parts for your vehicle. Message or call us for prices and availability.</p>
+          </header>
+
+          <div class="product-grid">
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="{% static 'assets/img/brakes.jpg' %}" alt="Set of front brake pads" width="600" height="450"
+                  loading="lazy">
+              </div>
+              <div class="product-body">
+                <h3>Brake Pad Set (Front)</h3>
+                <p class="product-fit">For Mercedes-Benz G-Class</p>
+                <p class="product-price"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call for price</p>
+                <a class="btn btn-whatsapp btn-sm btn-block"
+                  href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20enquire%20about%20the%20Brake%20Pad%20Set%20%28Front%29."
+                  target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+                </a>
+                <a class="call-link" href="tel:{{ tel_number }}"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  Call to Order<span class="sr-only">: Brake Pad Set (Front)</span></a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="{% static 'assets/img/engine.jpg' %}" alt="2.0 litre turbo engine" width="600" height="450"
+                  loading="lazy">
+              </div>
+              <div class="product-body">
+                <h3>2.0L Turbo Engine</h3>
+                <p class="product-fit">For Mercedes-Benz</p>
+                <p class="product-price"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call for price</p>
+                <a class="btn btn-whatsapp btn-sm btn-block"
+                  href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20enquire%20about%20the%202.0L%20Turbo%20Engine."
+                  target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+                </a>
+                <a class="call-link" href="tel:{{ tel_number }}"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  Call to Order<span class="sr-only">: 2.0L Turbo Engine</span></a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="{% static 'assets/img/headlights.jpg' %}" alt="LED headlight assembly" width="600"
+                  height="450" loading="lazy">
+              </div>
+              <div class="product-body">
+                <h3>LED Headlight Assembly</h3>
+                <p class="product-fit">For G-Wagon (W463)</p>
+                <p class="product-price"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call for price</p>
+                <a class="btn btn-whatsapp btn-sm btn-block"
+                  href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20enquire%20about%20the%20LED%20Headlight%20Assembly."
+                  target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+                </a>
+                <a class="call-link" href="tel:{{ tel_number }}"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  Call to Order<span class="sr-only">: LED Headlight Assembly</span></a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="{% static 'assets/img/wheel.jpg' %}" alt="New 275/50 R20 tyre" width="600" height="450"
+                  loading="lazy">
+              </div>
+              <div class="product-body">
+                <h3>Tyre (G-Class)</h3>
+                <p class="product-fit">275/50 R20</p>
+                <p class="product-price"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call for price</p>
+                <a class="btn btn-whatsapp btn-sm btn-block"
+                  href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20enquire%20about%20the%20Tyre%20%28G-Class%29%20275%2F50%20R20."
+                  target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+                </a>
+                <a class="call-link" href="tel:{{ tel_number }}"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  Call to Order<span class="sr-only">: Tyre (G-Class)</span></a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="{% static 'assets/img/battery.jpg' %}" alt="12 volt car battery" width="600" height="450"
+                  loading="lazy">
+              </div>
+              <div class="product-body">
+                <h3>Car Battery (12V)</h3>
+                <p class="product-fit">For Mercedes-Benz</p>
+                <p class="product-price"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call for price</p>
+                <a class="btn btn-whatsapp btn-sm btn-block"
+                  href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20enquire%20about%20the%20Car%20Battery%20%2812V%29."
+                  target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+                </a>
+                <a class="call-link" href="tel:{{ tel_number }}"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  Call to Order<span class="sr-only">: Car Battery (12V)</span></a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="{% static 'assets/img/lubri.jpg' %}" alt="Engine air filter" width="600" height="450"
+                  loading="lazy">
+              </div>
+              <div class="product-body">
+                <h3>Air Filter</h3>
+                <p class="product-fit">For Mercedes-Benz</p>
+                <p class="product-price"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call for price</p>
+                <a class="btn btn-whatsapp btn-sm btn-block"
+                  href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20enquire%20about%20the%20Air%20Filter."
+                  target="_blank" rel="noopener">
+                  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enquire on WhatsApp
+                </a>
+                <a class="call-link" href="tel:{{ tel_number }}"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  Call to Order<span class="sr-only">: Air Filter</span></a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ ABOUT + WHY CHOOSE US ============ -->
+    <section class="band" aria-label="About Francis Parts">
+      <div class="container band-layout">
+
+        <article class="about-card" id="about" aria-labelledby="about-title">
+          <img class="about-image" src="{% static 'assets/img/shop.jpg' %}"
+            alt="Shelves of organised car spare parts inside the Francis Parts store" width="800" height="450"
+            loading="lazy">
+          <div class="about-text">
+            <p class="eyebrow">About us</p>
+            <h2 id="about-title">Your Trusted Auto Parts Supplier</h2>
+            <p>Francis Parts is a reliable supplier of high-quality automobile spare parts for all makes and models. We
+              serve individual customers, mechanics and auto businesses with genuine parts, competitive pricing and
+              excellent service.</p>
+            <a class="btn btn-red btn-sm" href="#contact">Learn More <i class="fa-solid fa-arrow-right"
+                aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <div class="why-card" id="why-us" aria-labelledby="why-title">
+          <p class="eyebrow">Why choose us</p>
+          <h2 id="why-title">The Right Parts. The Right Partner.</h2>
+          <p class="why-lead">We are committed to providing the best auto parts and service for your needs.</p>
+
+          <ul class="why-list">
+            <li>
+              <span class="why-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+              <div>
+                <h3>Genuine &amp; Quality-Tested Parts</h3>
+                <p>Checked before they reach the shelf.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-icon" aria-hidden="true"><i class="fa-solid fa-tags"></i></span>
+              <div>
+                <h3>Competitive Pricing</h3>
+                <p>Best prices for your money.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></span>
+              <div>
+                <h3>Reliable Customer Service</h3>
+                <p>We are always here to help.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-icon" aria-hidden="true"><i class="fa-solid fa-truck-fast"></i></span>
+              <div>
+                <h3>Fast Delivery</h3>
+                <p>Get your parts on time.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-icon" aria-hidden="true"><i class="fa-solid fa-user-gear"></i></span>
+              <div>
+                <h3>Expert Assistance</h3>
+                <p>Help in finding the right parts for your vehicle.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Our gallery</p>
+          <h2 id="gallery-title">Our Products &amp; Footprints</h2>
+          <p>A glimpse of our premium auto parts and business environment.</p>
+        </header>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item gallery-item-large">
+            <img src="{% static 'assets/img/Gwagon.jpg' %}" alt="Black SUV in a showroom with red lighting" width="900"
+              height="600" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="{% static 'assets/img/engine.jpg' %}" alt="Clean car engine bay" width="600" height="400"
+              loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="{% static 'assets/img/shelves.jpg' %}" alt="Warehouse shelves stocked with spare parts"
+              width="600" height="400" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="{% static 'assets/img/brakes.jpg' %}" alt="Brake discs and calipers on display" width="600"
+              height="400" loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="{% static 'assets/img/wheel.jpg' %}" alt="Stack of new tyres" width="600" height="400"
+              loading="lazy">
+          </figure>
+          <figure class="gallery-item">
+            <img src="{% static 'assets/img/warehouse.jpg' %}" alt="Inside the Francis Parts warehouse" width="600"
+              height="400" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BUSINESS HOURS + LOCATION ============ -->
+    <section class="section section-paper" id="location" aria-labelledby="location-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Visit us</p>
+          <h2 id="location-title">Business Hours &amp; Location</h2>
+          <p>Drop by our store, or message us before you come so we can have your part ready.</p>
+        </header>
+
+        <div class="location-grid">
+
+          <div class="hours-card" id="hours">
+            <h3><i class="fa-regular fa-clock" aria-hidden="true"></i> Business hours</h3>
+            <table class="hours-table">
+              <caption class="sr-only">Opening hours by day</caption>
+              <tbody>
+                <tr>
+                  <th scope="row">Monday to Friday</th>
+                  <td>8:00 am to 6:00 pm</td>
+                </tr>
+                <tr>
+                  <th scope="row">Saturday</th>
+                  <td>8:00 am to 4:00 pm</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sunday</th>
+                  <td>Closed</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="hours-note">WhatsApp enquiries are answered during opening hours.</p>
+          </div>
+
+          <div class="map-card">
+            <!--
+              To show a real map, replace the .map-placeholder block below with
+              your Google Maps embed:
+              <iframe src="PASTE_GOOGLE_MAPS_EMBED_URL" title="Map to Francis Parts"
+                      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            -->
+            <div class="map-placeholder" role="img" aria-label="Map placeholder showing the store location">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            </div>
+            <div class="map-body">
+              <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Our location</h3>
+              <address>123 Example Street, Your City, Nigeria</address>
+              <a class="btn btn-outline-dark btn-sm"
+                href="https://www.google.com/maps/search/?api=1&amp;query=123+Example+Street+Your+City+Nigeria"
+                target="_blank" rel="noopener">
+                <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Get Directions
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section-dark" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-layout">
+
+        <div class="contact-info">
+          <header class="section-head">
+            <p class="eyebrow">Get in touch</p>
+            <h2 id="contact-title">Contact Us</h2>
+            <p>Tell us your vehicle make, model, year and the part you need. We will reply with availability and price.
+            </p>
+          </header>
+
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
+              <div>
+                <a href="tel:" +233247905203>+233 24 790 5203</a>
+                <span>Call to order</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon contact-icon-wa" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+              <div>
+                <a href="https://wa.me/+233247905203" target="_blank" rel="noopener">+233247905203</a>
+                <span>WhatsApp</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+              <div>
+                <a href="mailto:info@francisparts.example">info@francisparts.example</a>
+                <span>Send us an email</span>
+              </div>
+            </li>
+            <li>
+              <span class="contact-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+              <div>
+                <address>123 Example Street, Your City, Nigeria</address>
+                <span>Visit our location</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="form-card">
+          <h3>Send us a message</h3>
+          <!-- Set "action" to your Django view when you are ready to handle this form. -->
+          <form action="#" method="post">
+            {% csrf_token %}
+
+            <div class="form-field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Full name" autocomplete="name" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+233 00 000 0000" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Your message</label>
+              <textarea id="message" name="message" rows="4"
+                placeholder="Vehicle make, model, year and the part you need" required></textarea>
+            </div>
+
+            <button class="btn btn-red btn-block" type="submit"><i class="fa-solid fa-paper-plane"
+                aria-hidden="true"></i> Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <a class="logo" href="#home" aria-label="Francis Parts home">
+          <span class="logo-mark" aria-hidden="true"><i class="fa-solid fa-gear"></i></span>
+          <span class="logo-text">Francis <strong>Parts</strong></span>
+        </a>
+        <p>Quality Parts. Reliable Performance.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Shop Parts</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social-list">
+        <li><a href="#" aria-label="Francis Parts on Facebook"><i class="fa-brands fa-facebook-f"
+              aria-hidden="true"></i></a></li>
+        <li><a href="#" aria-label="Francis Parts on Instagram"><i class="fa-brands fa-instagram"
+              aria-hidden="true"></i></a></li>
+        <li><a href="#" aria-label="Francis Parts on X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+        </li>
+        <li><a href="#" aria-label="Francis Parts on YouTube"><i class="fa-brands fa-youtube"
+              aria-hidden="true"></i></a></li>
+      </ul>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Francis Parts. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <a class="wa-float"
+    href="https://wa.me/{{ wa_number }}?text=Hello%20Francis%20Parts%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+    target="_blank" rel="noopener" aria-label="Chat with Francis Parts on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+</body>
+
+</html>
